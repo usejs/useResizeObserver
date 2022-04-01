@@ -16,8 +16,6 @@ const useResizeObserver:UseResizeObserver = (callback) => {
   const [Rwidth, setRWidth] = useState<RefWidth>(reference.current?.offsetWidth)
   const [Rheight, setRHeight] = useState<RefHeight>(reference.current?.offsetHeight)
 
-
-
   const handleResize = useCallback(
     entries => {
       if (!Array.isArray(entries)) { return;}

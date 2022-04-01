@@ -23,6 +23,10 @@ A Custom Hook to observer the component resize.
 - Argument<br/>
   [callback](#callback)? : `callback: (entry: DOMRectReadOnly) => void`<br/>
 
+<br/>
+
+> Note: [DOMRectReadOnly](https://developer.mozilla.org/en-US/docs/Web/API/DOMRectReadOnly)
+> 
 ### Install
 ```bash 
 npm i @_use/resizeobserver

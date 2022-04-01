@@ -2,7 +2,7 @@
  <p align="center"><img width="250" src="https://usejs.github.io/.github/public/Use.transparent.png"/></p>
 
 
-# <p align="center">usePersistedState</p>
+# <p align="center">useResizeObserver</p>
 <p align="center">
 <a href="#details">
 <img src="https://img.shields.io/badge/License-MIT-319046?" alt="License-MIT"/>&nbsp;&nbsp;
@@ -13,52 +13,57 @@
 
 <br/>
 
-A custom hook that persists a state even after refreshing the page. It returns two values just like the standard `useState`, but has one more argument needed.
+A Custom Hook to observer the component resize.
 
 - Returns:<br/>
-  [state](#state) : `any`<br/>
-  [setState](#setstate) : `Dispatch<SetStateAction<any>>`<br/>
+  [ref](#ref) : `RefObject<HTMLDivElement>`<br/>
+  [width](#ref)? : `RefWidth`<br/>
+  [height](#ref)? : `RefHeight`<br/>
 
 - Argument<br/>
-  [key](#key): `string`<br/>
-  [initialState](#initialState): `any`<br/>
+  [callback](#callback)? : `callback: (entry: DOMRectReadOnly) => void`<br/>
 
 ### Install
 ```bash 
-npm i @_use/persistedstate
+npm i @_use/resizeobserver
 ```
 
 ### Usage
 
 ```tsx 
-import usePersistedState from '@_use/persistedstate'
+import useResizeObserver from '@_use/resizeobserver'
 
-const InputPersisted = () => {
+const DivResizeObserver = () => {
 
-   const [ state, setState ] = usePersistedState('state', '')
+  const [ ref, width, height ] = useResizeObserver(e => {
+    console.log(e)
+  })
+    console.log(width)
 
   return (<>
-    <input 
-      value={state}
-      onClick={e => setState(e.target.value)}  
-    />
-     
+    <div ref={ref}>
+
+    <div/>
   </>)
 }
 
-export default InputPersisted
+export default DivResizeObserver
 ```
 
 ### Type
-> if you need `usePersistedState` type, import inside `UsePersistedState` braces with first letter capitalized.
+> if you need `useResizeObserver` type, import inside `UseResizeObserver` braces with first letter capitalized.
 ```ts
-import usePersistedState, { UsePersistedState } from '@_use/persistedstate'
+import useResizeObserver, { UseResizeObserver } from '@_use/resizeobserver'
 ```
 
 ```ts
-type UsePersistedState = <T>(key:string, initialState: T) => [
-  T,
-  Dispatch<SetStateAction<T>>
+type RefWidth = number | undefined
+type RefHeight = number | undefined
+
+type UseResizeObserver = (  callback?: (entry: DOMRectReadOnly) => void) => [
+  RefObject<HTMLDivElement>,
+  RefWidth?, 
+  RefHeight?
 ]
 ```
 

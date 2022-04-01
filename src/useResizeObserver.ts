@@ -1,10 +1,5 @@
 import { useLayoutEffect, useState, useCallback, RefObject, useRef } from "react";
 
-export interface ResizeObserverEntry {
-  target: HTMLElement;
-  contentRect: DOMRectReadOnly;
-}
-
 type RefWidth = number | undefined
 type RefHeight = number | undefined
 
